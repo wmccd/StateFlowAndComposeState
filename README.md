@@ -11,6 +11,6 @@ A really simple example of StateFlow vs ComposeState...just to compare how they 
 
 ### Purpose
 Two ViewModels created in the presentation layer and two Composable screens created in the UI layer.
-One VM and Screen uses StateFlow
-One VM and Screen uses ComposeState
-Both VMs powered by the same Repository
+- One VM and Screen uses StateFlow
+- One VM and Screen uses ComposeState
+- Both VMs powered by the same Repository
