@@ -2,8 +2,8 @@ package com.wmccd.presentinglayer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wmccd.repositorylayer.Album
-import com.wmccd.repositorylayer.Book
+import com.wmccd.models.Album
+import com.wmccd.models.Book
 import com.wmccd.repositorylayer.MyRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

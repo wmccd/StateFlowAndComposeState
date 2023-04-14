@@ -6,12 +6,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wmccd.repositorylayer.Album
-import com.wmccd.repositorylayer.Book
+import com.wmccd.models.Album
+import com.wmccd.models.Book
+
 import com.wmccd.repositorylayer.MyRepository
 import kotlinx.coroutines.launch
 
 class ComposeStateVM( private val myRepository: MyRepository): ViewModel() {
+
+    private var _albums = listOf<Album>()
 
     var simpleValueComposeState by mutableStateOf(0)
         private set
@@ -20,8 +23,8 @@ class ComposeStateVM( private val myRepository: MyRepository): ViewModel() {
 
         myRepository.simpleValue.collect{
             Log.d("XXX", "Inside the Compose Simple collect")
-
             simpleValueComposeState = it
+
         }
     }
 
@@ -38,6 +41,7 @@ class ComposeStateVM( private val myRepository: MyRepository): ViewModel() {
         private set
     private val albumsObserver = viewModelScope.launch {
         myRepository.albums.collect{
+            _albums = it
             albumsComposeState = it
         }
     }
@@ -64,5 +68,17 @@ class ComposeStateVM( private val myRepository: MyRepository): ViewModel() {
 
     fun incrementSimpleValue(){
         myRepository.incrementSimpleValue()
+    }
+
+    fun sortAlbumsByYear(){
+        albumsComposeState = albumsComposeState.sortedBy { it.releaseYear }
+    }
+
+    fun sortAlbumsByAct(){
+        albumsComposeState = albumsComposeState.sortedBy { it.act }
+    }
+
+    fun sortAlbumsByAlbumName(){
+        albumsComposeState = albumsComposeState.sortedBy { it.name }
     }
 }

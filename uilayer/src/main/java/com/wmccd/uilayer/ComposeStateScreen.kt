@@ -38,10 +38,21 @@ fun ComposeStateScreen( viewModel: ComposeStateVM ){
         Text(text = "Album Count: ${albums.size}")
         Text(text = "Book Count: ${books.size}")
         Text(text = "Combined Count: ${combined.size}")
+        Text(text = "Album Years: ${albums.map{it.releaseYear}}")
         Button(onClick = {
             viewModel.incrementSimpleValue()
         }) {
             Text("Increment Simple Value")
+        }
+        Button(onClick = {
+            viewModel.sortAlbumsByYear()
+        }) {
+            Text("Sort By Year")
+        }
+        Button(onClick = {
+            viewModel.sortAlbumsByAlbumName()
+        }) {
+            Text("Sort By Album Name")
         }
 
     }
